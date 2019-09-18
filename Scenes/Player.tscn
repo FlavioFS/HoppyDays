@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/PlayerAnimation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GFX/Background/bg_layer1.png" type="Texture" id=3]
+[ext_resource path="res://GFX/Background/bg_layer2.png" type="Texture" id=4]
+[ext_resource path="res://GFX/Background/bg_layer3.png" type="Texture" id=5]
+[ext_resource path="res://GFX/Background/bg_layer4.png" type="Texture" id=6]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 61.9581
+height = 78.9783
+
+[sub_resource type="Animation" id=2]
+resource_name = "zoom"
+length = 4.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 640.299, 373.618 )
+collision_mask = 14
+collision/safe_margin = 0.001
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlayerAnimation" parent="." instance=ExtResource( 2 )]
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 0.410583 )
+shape = SubResource( 1 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 0, 102 )
+collision_mask = 2
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 0, -102 )
+collision_mask = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+editor/display_folded = true
+current = true
+zoom = Vector2( 2, 2 )
+smoothing_enabled = true
+smoothing_speed = 7.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+editor/display_folded = true
+scroll_base_offset = Vector2( 0, -500 )
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+editor/display_folded = true
+motion_mirroring = Vector2( 2048, 2048 )
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+editor/display_folded = true
+motion_scale = Vector2( 0.25, 1 )
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer2"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+editor/display_folded = true
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer3"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 5 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+editor/display_folded = true
+motion_scale = Vector2( 0.75, 1 )
+motion_mirroring = Vector2( 2048, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer4"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+anims/zoom = SubResource( 2 )
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+[connection signal="animate" from="." to="PlayerAnimation" method="_on_Player_animate"]
