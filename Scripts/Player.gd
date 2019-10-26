@@ -100,6 +100,3 @@ func play_SFX(FILE):
 func add_extra_frame():
 	position.y -= 1
 	yield(get_tree(), "idle_frame")
-
-func _on_FloorCooldownTimer_timeout():
-	pass # Replace with function body.
