@@ -113,4 +113,8 @@ anims/zoom = SubResource( 2 )
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
+
+[node name="FloorCooldownTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
 [connection signal="animate" from="." to="PlayerAnimation" method="_on_Player_animate"]
