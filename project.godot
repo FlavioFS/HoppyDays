@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Hoppy Days"
 run/main_scene="res://Scenes/Level1.tscn"
-config/icon="res://GFX/icon.png"
+config/icon="res://GFX/icon2.png"
 
 [display]
 
