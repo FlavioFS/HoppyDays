@@ -1,5 +1,7 @@
 # Hoppy Days
 
+![Preview gif](preview.gif)
+
 Based off of the demo project from Discovering Godot: Make Video Games in Python-like GDScript.
 
 ### To Do
