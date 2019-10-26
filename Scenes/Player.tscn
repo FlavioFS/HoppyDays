@@ -115,6 +115,7 @@ anims/zoom = SubResource( 2 )
 volume_db = -10.0
 
 [node name="FloorCooldownTimer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.15
 one_shot = true
 [connection signal="animate" from="." to="PlayerAnimation" method="_on_Player_animate"]
+[connection signal="timeout" from="FloorCooldownTimer" to="." method="_on_FloorCooldownTimer_timeout"]

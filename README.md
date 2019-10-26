@@ -18,7 +18,7 @@ Based off of the demo project from Discovering Godot: Make Video Games in Python
 - [ ] Research RayCasts v is_on_floor() collisions
 
 - [ ] Add in-game helpers/HUD (arrows, labels, etc)
-- [ ] Add double jump
+- [x] Add double jump
 
 - [ ] Add brown bunny NPC (as a guide)
 - [ ] Add dialogue popup for brown bunny
